@@ -43,6 +43,15 @@ Position.prototype.getCoord=function() {
   return [this.x,this.y];
 }
 
+Position.prototype.isWithinRange = function(rows,columns){
+  let XRange = new Position(0,columns,'east');
+  let YRange = new Position(0,rows ,'east');
+  let rangeOfX =  this.x >= XRange.x && this.x < XRange.y;
+  let rangeOfY = this.y >= YRange.x && this.y < YRange.y;
+  return rangeOfX && rangeOfY;
+}
+
+
 const generateRandomPosition=function(maxX,maxY) {
   let x=generateRandomNumberBetween(0,maxX);
   let y=generateRandomNumberBetween(0,maxY);

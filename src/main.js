@@ -8,18 +8,24 @@ const animateSnake = function() {
   let oldHead = snake.getHead();
   let oldTail = snake.move();
   let head = snake.getHead();
-  paintBody(oldHead);
-  unpaintSnake(oldTail);
-  paintHead(head);
+  let game = new Game(numberOfRows,numberOfCols);
   if (head.isSameCoordAs(food)) {
     snake.grow();
     createFood(numberOfRows, numberOfCols);
     drawFood(food);
   }
-  if (snake.checkForTouchBody()||checkForTouchGrid()) {
+  if (game.hasSnakeTouchWall()) {
     clearInterval(animator);
     displayGameOver();
+    return;
   };
+  paintBody(oldHead);
+  unpaintSnake(oldTail);
+  paintHead(head);
+  if (snake.checkForTouchBody()) {
+    clearInterval(animator);
+    displayGameOver();
+  }
 }
 
 const changeSnakeDirection = function(event) {
@@ -66,12 +72,6 @@ const startGame = function() {
   addKeyListener();
   animator = setInterval(animateSnake, 140);
 }
-
-const checkForTouchGrid = function() {
-  let head = snake.getHead();
-  return head.y < 0 || head.x < 0|| head.x > numberOfCols-1|| head.y > numberOfRows-1
-};
-
 
 const restart = function(){
   location.reload();

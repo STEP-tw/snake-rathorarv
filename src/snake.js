@@ -26,9 +26,11 @@ Snake.prototype = {
   },
   checkForTouchBody: function() {
     let head = this.head;
-    let body = this.body;
-    return body.some(function(tail) {
+    return this.body.some(function(tail) {
       return tail.isSameCoordAs(head);
     });
+  },
+  isWithinRange:function(rows,columns){
+    return this.head.isWithinRange(rows,columns);
   }
 }

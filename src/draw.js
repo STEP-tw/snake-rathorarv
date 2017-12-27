@@ -41,6 +41,12 @@ const drawFood=function(food) {
 }
 
 const displayGameOver = function(){
-  document.getElementById('button').style.visibility = "visible";
-  document.getElementById('over').style.visibility = "visible";
+  let heading = document.createElement('h3');
+  heading.innerHTML = 'Game Over';
+  let button = document.createElement('button');
+  button.innerHTML = 'restart';
+  button.onclick = restart;
+  let endMessgBlock = document.getElementById('end');
+  endMessgBlock.appendChild(heading);
+  endMessgBlock.appendChild(button);
 }
