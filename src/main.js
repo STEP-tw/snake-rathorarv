@@ -9,7 +9,6 @@ const animateSnake = function() {
   let oldHead = snake.getHead();
   let oldTail = snake.move();
   let head = snake.getHead();
-  console.log(head);
   paintBody(oldHead);
   unpaintSnake(oldTail);
   paintHead(head);
@@ -18,7 +17,7 @@ const animateSnake = function() {
     createFood(numberOfRows, numberOfCols);
     drawFood(food);
   }
-  checkForLoose(head);
+  checkForLoose();
 }
 
 const changeSnakeDirection = function(event) {
@@ -43,7 +42,7 @@ const addKeyListener = function() {
 }
 
 const createSnake = function() {
-  let tail = new Position(12, 10, "south");
+  let tail = new Position(12, 10, "west");
   let body = [];
   body.push(tail);
   body.push(tail.next());
@@ -66,12 +65,24 @@ const startGame = function() {
   animator = setInterval(animateSnake, 140);
 }
 
-const checkForLoose = function(head) {
+const checkForLoose = function() {
+  let head = snake.getHead();
   if(head.y==0||head.x==0){
     snake = new Snake(null,null);
   }
   if(head.x==numberOfCols-1||head.y==numberOfRows-1){
     snake = new Snake(null,null);
   }
+  if(checkForTouchBody()){
+    snake = null;
+  }
+};
+
+const checkForTouchBody = function(){
+  let head = snake.getHead();
+  let body = snake.getBody();
+  return body.some(function(tail){
+    return tail.x==head.x && tail.y == head.y;
+  });
 }
 window.onload = startGame;
