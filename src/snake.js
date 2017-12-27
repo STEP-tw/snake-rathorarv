@@ -23,5 +23,5 @@ Snake.prototype={
   },
   turnRight:function() {
     this.head=this.head.turnRight();
-  }
+  },
 }
