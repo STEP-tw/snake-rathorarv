@@ -25,10 +25,10 @@ Snake.prototype = {
     this.head = this.head.turnRight();
   },
   checkForTouchBody: function() {
-    let head = snake.getHead();
-    let body = snake.getBody();
+    let head = this.head;
+    let body = this.body;
     return body.some(function(tail) {
-      return tail.isSameCoordAs(body);
+      return tail.isSameCoordAs(head);
     });
   }
 }
