@@ -70,7 +70,7 @@ const startGame = function() {
 
 const checkForTouchGrid = function() {
   let head = snake.getHead();
-  return head.y == -1 || head.x == -1|| head.x == numberOfCols|| head.y == numberOfRows
+  return head.y == 0 || head.x == 0|| head.x == numberOfCols-1|| head.y == numberOfRows -1
 };
 
 const checkForTouchBody = function() {
