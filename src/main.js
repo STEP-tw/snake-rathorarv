@@ -16,10 +16,9 @@ const animateSnake = function() {
     createFood(numberOfRows, numberOfCols);
     drawFood(food);
   }
-  if (checkForTouchBody()||checkForTouchGrid()) {
+  if (snake.checkForTouchBody()||checkForTouchGrid()) {
     clearInterval(animator);
-    document.getElementById('button').style.visibility = "visible";
-    document.getElementById('over').style.visibility = "visible";
+    displayGameOver();
   };
 }
 
@@ -70,16 +69,9 @@ const startGame = function() {
 
 const checkForTouchGrid = function() {
   let head = snake.getHead();
-  return head.y == 0 || head.x == 0|| head.x == numberOfCols-1|| head.y == numberOfRows -1
+  return head.y < 0 || head.x < 0|| head.x > numberOfCols-1|| head.y > numberOfRows-1
 };
 
-const checkForTouchBody = function() {
-  let head = snake.getHead();
-  let body = snake.getBody();
-  return body.some(function(tail) {
-    return tail.x == head.x && tail.y == head.y;
-  });
-}
 
 const restart = function(){
   location.reload();

@@ -39,3 +39,8 @@ const drawSnake=function(snake) {
 const drawFood=function(food) {
   paintCell(food,"food");
 }
+
+const displayGameOver = function(){
+  document.getElementById('button').style.visibility = "visible";
+  document.getElementById('over').style.visibility = "visible";
+}
