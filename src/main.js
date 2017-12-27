@@ -17,7 +17,9 @@ const animateSnake = function() {
     createFood(numberOfRows, numberOfCols);
     drawFood(food);
   }
-  checkForLoose();
+  if(checkForLoose()||checkForTouchBody()){
+    clearInterval(animator);
+  };
 }
 
 const changeSnakeDirection = function(event) {
@@ -67,15 +69,7 @@ const startGame = function() {
 
 const checkForLoose = function() {
   let head = snake.getHead();
-  if(head.y==0||head.x==0){
-    snake = new Snake(null,null);
-  }
-  if(head.x==numberOfCols-1||head.y==numberOfRows-1){
-    snake = new Snake(null,null);
-  }
-  if(checkForTouchBody()){
-    snake = null;
-  }
+  return head.y==0||head.x==0||head.x==numberOfCols-1||head.y==numberOfRows-1
 };
 
 const checkForTouchBody = function(){
