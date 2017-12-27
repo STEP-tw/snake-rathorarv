@@ -2,7 +2,6 @@ let snake = undefined;
 let food = undefined;
 let numberOfRows = 60;
 let numberOfCols = 120;
-
 let animator = undefined;
 
 const animateSnake = function() {
@@ -20,6 +19,7 @@ const animateSnake = function() {
   if (checkForTouchBody()||checkForTouchGrid()) {
     clearInterval(animator);
     document.getElementById('button').style.visibility = "visible";
+    document.getElementById('over').style.visibility = "visible";
   };
 }
 

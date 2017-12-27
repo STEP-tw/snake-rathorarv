@@ -24,3 +24,11 @@
   background-color: blue;
   border-radius: 50%;
 }
+
+#button {
+  visibility:hidden;
+}
+
+#over {
+  visibility: hidden;
+}
