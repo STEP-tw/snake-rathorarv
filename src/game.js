@@ -9,6 +9,5 @@ Game.prototype.addSnake = function(snake){
 }
 
 Game.prototype.hasSnakeTouchWall = function() {
-  this.addSnake(snake);
   return !this.snake.isWithinRange(this.rows,this.columns);
 };

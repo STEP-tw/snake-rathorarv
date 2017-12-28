@@ -4,16 +4,17 @@ let numberOfRows = 60;
 let numberOfCols = 120;
 let animator = undefined;
 
+
 const animateSnake = function() {
   let oldHead = snake.getHead();
   let oldTail = snake.move();
   let head = snake.getHead();
-  let game = new Game(numberOfRows,numberOfCols);
   if (head.isSameCoordAs(food)) {
     snake.grow();
     createFood(numberOfRows, numberOfCols);
     drawFood(food);
   }
+  game.addSnake(snake);
   if (game.hasSnakeTouchWall()) {
     clearInterval(animator);
     displayGameOver();
@@ -64,6 +65,7 @@ const createFood = function(numberOfRows, numberOfCols) {
 }
 
 const startGame = function() {
+  game = new Game(numberOfRows,numberOfCols);
   createSnake();
   drawGrids(numberOfRows, numberOfCols);
   drawSnake(snake);
