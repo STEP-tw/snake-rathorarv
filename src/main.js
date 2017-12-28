@@ -14,7 +14,6 @@ const animateSnake = function() {
     createFood(numberOfRows, numberOfCols);
     drawFood(food);
   }
-  game.addSnake(snake);
   if (game.hasSnakeTouchWall()) {
     clearInterval(animator);
     displayGameOver();
@@ -56,8 +55,8 @@ const createSnake = function() {
   body.push(tail);
   body.push(tail.next());
   let head = tail.next().next();
-
   snake = new Snake(head, body);
+  game.addSnake(snake);
 }
 
 const createFood = function(numberOfRows, numberOfCols) {
